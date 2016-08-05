@@ -1,0 +1,18 @@
+ check process docker with pidfile /run/docker.pid
+   group system
+   group crond
+   start program = "/etc/init.d/cron start"
+   stop  program = "/etc/init.d/cron stop"
+   if 5 restarts with 5 cycles then timeout
+   depend cron_bin
+   depend cron_rc
+   depend cron_spool
+
+ check file docker_bin with path /usr/bin/docker 
+   group docker 
+   include /etc/monit/templates/rootbin
+
+ check file docker_rc with path "/etc/init.d/docker"
+   group docker 
+   include /etc/monit/templates/rootbin
+

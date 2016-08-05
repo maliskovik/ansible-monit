@@ -1,0 +1,52 @@
+---
+#Setup monit
+- name: Install monit
+  apt:
+      name: "{{ item }}"
+      state: latest
+      force: yes
+  with_items:
+    - monit
+    - python3-yaml
+    - python3-pip
+
+  notify: Restart monit
+
+- name: Configure monitrc
+  template:
+      backup: yes
+      mode: 0600
+      owner: root
+      group: root
+      src: "monit_config"
+      dest: "/etc/monit/monitrc"
+  notify: Restart monit
+
+- name: Monitor basics
+  template:
+      src: "basic/{{ item }}"
+      dest: "/etc/monit/conf.d/{{ item }}"
+      owner: root
+      group: root
+  with_items: "{{ monit_basic_configs }}"
+  when: monit_basic_configs is defined
+  notify: Restart monit
+
+- name: Monitor custom configs
+  template:
+      src: "{{ monit_custom_confgis }}/{{ item }}"
+      dest: "/etc/monit/conf.d/{{ item }}"
+      owner: root
+      group: root
+  with_items: "{{ monit_custom_configs }}"
+  when: monit_custom_configs is defined
+  notify: Restart monit
+
+- name: Reload monit
+  service:
+    name: monit
+    state: reloaded
+    enabled: yes
+
+- include: twilio.yml
+  when: "{{ monit_twilio }}"

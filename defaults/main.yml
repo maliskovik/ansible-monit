@@ -1,0 +1,8 @@
+monit_admin_mails:
+  - "info@example.com"
+
+monit_basic_configs:
+  - resources
+
+monit_admin_group: "sudo"
+monit_custom_confgis: "templates/custom"

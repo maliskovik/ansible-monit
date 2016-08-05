@@ -1,0 +1,12 @@
+---
+- name: Restart monit
+  service:
+    name: monit
+    state: restarted
+    enabled: yes
+
+- name: Reload monit
+  service:
+    name: monit
+    state: restarted
+    enabled: yes

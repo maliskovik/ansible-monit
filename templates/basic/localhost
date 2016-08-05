@@ -1,0 +1,2 @@
+check host irams with address 136.243.6.150
+        if failed port 22 then alert

@@ -1,0 +1,15 @@
+---
+
+- name: Install twilio python package
+  command: pip3 install -U twilio
+
+- name: Create twilio script dir
+  file:
+    dest: /opt/scripts/twilio
+    state: directory
+
+- name: Copy twilio script
+  template:
+      src: "sendSms.py"
+      dest: "/opt/scripts/twilio/sendSms.py"
+      mode: 0700

@@ -1,0 +1,22 @@
+###############################################################################
+## Monit control file
+###############################################################################
+set daemon 60
+with start delay 60
+set logfile syslog facility log_daemon
+set idfile /var/.monit.id
+set statefile /var/lib/monit/state
+set mailserver  localhost
+set eventqueue
+    basedir /var/lib/monit/events
+    slots 100
+
+{% for mail in monit_admin_mails %}
+set alert {{ mail }}
+{% endfor %}
+
+set httpd port 2812 and
+    use address localhost
+    allow @{{ monit_admin_group }}
+
+include /etc/monit/conf.d/*
