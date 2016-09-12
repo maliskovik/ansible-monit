@@ -32,21 +32,14 @@
   when: monit_basic_configs is defined
   notify: Restart monit
 
-- name: Monitor custom configs
+- name: Monitor http watch
   template:
-      src: "{{ monit_custom_confgis }}/{{ item }}"
-      dest: "/etc/monit/conf.d/{{ item }}"
+      src: "httpTest"
+      dest: "/etc/monit/conf.d/httpTest"
       owner: root
       group: root
-  with_items: "{{ monit_custom_configs }}"
-  when: monit_custom_configs is defined
   notify: Restart monit
-
-- name: Reload monit
-  service:
-    name: monit
-    state: reloaded
-    enabled: yes
+  when: monit_watched_hosts is defined
 
 - include: twilio.yml
   when: "{{ monit_twilio }}"

@@ -26,17 +26,17 @@ auth_token  = "{{ monit_twilio_auh_token }}"
 number_to = "{{ monit_twilio_number_to }}"
 number_from = "{{ monit_twilio_number_from }}"
 if len(sys.argv) < 2:
-    print("usage ./sendSms <action> <message>")
+    print("usage ./sendSms <action> <event>")
     sys.exit
 action = sys.argv[1]
-message = sys.argv[2]
+event = sys.argv[2]
 fileData = { 'locks': [] }
 
 ################################################################################
 
 ##############################---FUNCTIONS---###################################
 
-def sendSMS():
+def sendSMS(message):
     """
     Send an sms with twilio api.
     """
@@ -74,14 +74,15 @@ def getLocks(lock_file):
     return content
 
 def newAlert():
-    if not message in fileData['locks']:
-        sendSMS()
-        fileData['locks'].append(message)
+    if not event in fileData['locks']:
+        sendSMS(event + " is down!")
+        fileData['locks'].append(event)
         writeLockFile(locks_file, fileData)
 
 def removeAlert():
-    if message in fileData['locks']:
-        fileData['locks'].remove(message)
+    if event in fileData['locks']:
+        sendSMS(event + " is back up.")
+        fileData['locks'].remove(event)
         writeLockFile(locks_file, fileData)
 
 
