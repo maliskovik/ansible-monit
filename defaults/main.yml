@@ -10,3 +10,4 @@ monit_twilio_script: "/opt/scripts/twilio/sendSms.py"
 monit_mail_alert_delay: 2
 monit_sms_alert_delay: 5
 monit_alert_timeout: 10
+monit_twilio: false

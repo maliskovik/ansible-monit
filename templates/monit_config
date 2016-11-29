@@ -1,20 +1,23 @@
 ###############################################################################
 ## Monit control file
 ###############################################################################
-set daemon 60
-with start delay 60
+set daemon 30
+  with start delay 60
 set logfile syslog facility log_daemon
+set pidfile /var/run/monit.pid
 set idfile /var/.monit.id
-set statefile /var/lib/monit/state
+set statefile /var/.monit.state
 set mailserver  localhost
 set eventqueue
     basedir /var/lib/monit/events
-    slots 100
+    slots 1000
 
 {% for mail in monit_admin_mails %}
 set alert {{ mail }}
 {% endfor %}
-
+{% if mmonit_enabled == true %}
+set mmonit http://monit:monit@localhost:8080/collector
+{% endif %}
 set httpd port 2812 and
     use address localhost
     allow @{{ monit_admin_group }}

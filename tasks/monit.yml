@@ -8,8 +8,6 @@
   with_items:
     - monit
     - python3-yaml
-    - python3-pip
-
   notify: Restart monit
 
 - name: Configure monitrc
