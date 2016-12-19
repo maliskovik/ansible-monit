@@ -10,3 +10,9 @@
     name: monit
     state: restarted
     enabled: yes
+
+- name: Restart mmonit
+  service:
+    name: mmonit
+    state: restarted
+    enabled: yes

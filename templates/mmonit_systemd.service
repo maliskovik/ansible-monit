@@ -1,0 +1,13 @@
+[Unit]
+Description = Easy, proactive monitoring of Unix systems, network and cloud services
+After = network.target
+
+[Service]
+Type=simple
+ExecStart = {{ monit_mmonit_base_dir }}/bin/mmonit -i
+ExecStop = {{ monit_mmonit_base_dir }}/bin/mmonit stop
+PIDFile = {{ monit_mmonit_base_dir }}/logs/mmonit.pid
+Restart = on-abnormal
+
+[Install]
+WantedBy = multi-user.target

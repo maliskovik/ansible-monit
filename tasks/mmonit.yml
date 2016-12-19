@@ -1,0 +1,29 @@
+---
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    
+- name: Get mmonit
+  unarchive:
+    remote_src: yes
+    src: "{{ monit_mmonit_url }}"
+    dest: "/opt"
+    creates: "/opt/mmonit-{{ monit_mmonit_version }}"
+
+- name: Create version link
+  file:
+    src: "mmonit-{{ monit_mmonit_version }}"
+    state: link
+    path: /opt/mmonit
+
+- name: Configure mmonit
+  template:
+    src: mmonit_server_config
+    dest: /opt/mmonit/conf/server.xml
+  notify: Restart mmonit
+
+- name: Configure mmonit systemd
+  template:
+    src: mmonit_systemd.service
+    dest: /etc/systemd/system/mmonit.service

@@ -11,4 +11,10 @@ monit_mail_alert_delay: 2
 monit_sms_alert_delay: 5
 monit_alert_timeout: 10
 monit_twilio: false
-mmonit_enabled: false
+monit_mmonit: false
+monit_mmonit_port: 8080
+monit_mmonit_version: "3.6.2"
+monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-linux-x64.tar.gz"
+monit_mmonit_base_dir: "/opt/mmonit"
+monit_mmonit_proxy_scheme: "https"
+monit_mmonit_proxy_port: 443

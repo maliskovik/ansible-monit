@@ -15,7 +15,7 @@ set eventqueue
 {% for mail in monit_admin_mails %}
 set alert {{ mail }}
 {% endfor %}
-{% if mmonit_enabled == true %}
+{% if monit_mmonit == true %}
 set mmonit http://monit:monit@localhost:8080/collector
 {% endif %}
 set httpd port 2812 and
