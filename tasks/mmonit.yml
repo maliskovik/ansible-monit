@@ -1,9 +1,4 @@
 ---
-- name: Install dependencies
-  apt:
-    name: "{{ item }}"
-    state: present
-    
 - name: Get mmonit
   unarchive:
     remote_src: yes

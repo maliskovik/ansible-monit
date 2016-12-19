@@ -16,7 +16,7 @@ set eventqueue
 set alert {{ mail }}
 {% endfor %}
 {% if monit_mmonit == true %}
-set mmonit http://monit:monit@localhost:8080/collector
+set mmonit http://monit:{{ monit_mmonit_password }}@localhost:8080/collector
 {% endif %}
 set httpd port 2812 and
     use address localhost
