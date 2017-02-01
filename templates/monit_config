@@ -21,5 +21,6 @@ set mmonit http://monit:{{ monit_mmonit_password }}@localhost:8080/collector
 set httpd port 2812 and
     use address localhost
     allow @{{ monit_admin_group }}
+    {% if monit_mmonit == true %}allow {{ monit_mmonit_username }}:{{ monit_mmonit_user_password }}{% endif %}
 
 include /etc/monit/conf.d/*

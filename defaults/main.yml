@@ -18,3 +18,6 @@ monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-lin
 monit_mmonit_base_dir: "/opt/mmonit"
 monit_mmonit_proxy_scheme: "https"
 monit_mmonit_proxy_port: 443
+monit_mmonit_licence: "DU4PB2UOTO-RE5SVLYI32-EZ4PNOJLHU-LLQXQYQPQV-JPC6YTREHH IBXBHHUE4P-TPGMSCEVB7-HPX54K3BT3-WAK32KHP5T-XZFAL4JDU3 2L6VOAE4G2-Y3TNW2OIBN-MDSMRONJ7H-55Z3N7E5JW-IRIVLZ64IW 7RIVLM7RSY-TY3C5PEMRN-4CIH7RJMVQ-JSRRM7RFWY-HFTSS7KE4W O7FSE"
+monit_mmonit_username: adimn
+monit_mmonit_user_password: "gu5w4g24u9ngw45gnweg"
