@@ -22,8 +22,5 @@
         </Host>
     </Engine>
   </Service>
-
-<License owner="Tildeslash Ltd. - Trial License">
     {{ monit_mmonit_licence }}
-</License>
 </Server>

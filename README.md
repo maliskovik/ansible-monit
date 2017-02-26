@@ -4,11 +4,16 @@ Installs and configures monit.
 
 This role also includes an sms alerting scipt which uses twilio as the sms service provider.
 
+## MMonit + Monit architecture
+Monit pushes stats to mmonit periodically, and on events.
+We will use self signed certificates for
+
 ## Mandatory variables
 * monit_admin_mails: Mail addresses, which alerts are sent to.
 * monit_basic_configs: Basic config files to use. This config files are include with the role.
 * monit_admin_group: Name of the monit admin group.
 * monit_twilio: Do you want to use twilio for alerts
+* monit_mmonit_licence: MMonit server licence.
 
 ## Optional variables
 
