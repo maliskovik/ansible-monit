@@ -3,4 +3,4 @@
 - include: twilio.yml
   when: monit_twilio == true
 - include: mmonit.yml
-  when: monit_mmonit == true
+  when: monit_mmonit_master == true

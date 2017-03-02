@@ -23,8 +23,15 @@ We will use self signed certificates for
 * monit_twilio_auh_token: Your twilio auth token.
 * monit_twilio_number_to: Which number to send sms alerts to. Make sure it's configured on twilio to work fot this number if you're using a trial account.
 * monit_twilio_number_from: hich phone number to send sms alerts from.
-* monit_mmonit: Use mmonit (True|False)
+* monit_mmonit: Send metrics to mmonit (True|False)
+* monit_mmonit_master: Setup mmonit instance
 * monit_mmonit_port: MMonit local port
-
+* monit_mmonit_version:  Which version of mmonit t install
+* monit_mmonit_password: Monit user password - for sending metrics
+* monit_mmonit_username: Monit username - for sending metrics
+* monit_mmonit_group: Monit user group
+* monit_mmonit_hostname: Mmonit server address(with http and all)
+* monit_mmonit_proxy_port: Mmonit server name as seen from outside.
+* monit_mmonit_pemfile: Path to monit certificate pemfile
 ## MMonit
 To use mmonit, set `monit_mmonit` to true. Other than that, you need to set the monit_mmonit_port.

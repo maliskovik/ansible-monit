@@ -30,6 +30,16 @@
   when: monit_basic_configs is defined
   notify: Restart monit
 
+- name: Generate monit ssl cert
+  command: openssl req -new -x509 -days 365 -nodes -newkey rsa:4096 -keyout {{ monit_mmonit_pemfile}} -out {{ monit_mmonit_pemfile }} -subj "/C=SI/ST=Slovenia/L=Ljubljana/O=Izzivizzi/OU=devops/CN={{ ansible_hostname }}"
+
+- name: Set monit SSL cert permissions
+  file:
+    mode: 0700
+    owner: root
+    group: root
+    path: /opt/certs/monit.pem
+
 - name: Monitor http watch
   template:
       src: "httpTest"
