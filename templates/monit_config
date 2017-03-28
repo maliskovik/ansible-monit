@@ -17,7 +17,7 @@ set alert {{ mail }}
 {% endfor %}
 {% if monit_mmonit == true %}
 set eventqueue basedir /var/monit slots 100000
-set mmonit https://monit:{{ monit_mmonit_password }}@{{ monit_mmonit_proxy_name }}/collector
+set mmonit https://{{ monit_mmonit_username }}:{{ monit_mmonit_password }}@{{ monit_mmonit_proxy_name }}/collector
 {% endif %}
 set httpd port 2812 and use address {{ ansible_default_ipv4.address }}
     SSL enable

@@ -8,9 +8,15 @@
 
 - name: Create version link
   file:
-    src: "mmonit-{{ monit_mmonit_version }}"
+    src: "/opt/mmonit-{{ monit_mmonit_version }}"
     state: link
     path: /opt/mmonit
+
+- name: Create systemd file
+  copy:
+    src: "monit_systemd"
+    dest: "{{ monit_systemd_file }}"
+  notify: Restart mmonit
 
 - name: Configure mmonit
   template:

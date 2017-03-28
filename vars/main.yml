@@ -1,0 +1,4 @@
+---
+monit_main_config: "{{ ( ansible_os_family == 'Archlinux') |  ternary('/etc/monitrc', '/etc/monit/monitrc') }}"
+monit_conf_dir: "{{ ( ansible_os_family == 'Archlinux') |  ternary('/etc/monit.d', '/etc/monit/conf.d') }}"
+monit_systemd_file: "/etc/systemd/system/mmonit.service"

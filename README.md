@@ -32,6 +32,9 @@ We will use self signed certificates for
 * monit_mmonit_group: Monit user group
 * monit_mmonit_hostname: Mmonit server address(with http and all)
 * monit_mmonit_proxy_port: Mmonit server name as seen from outside.
+* monit_mmonit_proxy_name: Name of the server as seen from the outside
 * monit_mmonit_pemfile: Path to monit certificate pemfile
+* monit_mmonit_host_ip: mmonit host ip
+
 ## MMonit
 To use mmonit, set `monit_mmonit` to true. Other than that, you need to set the monit_mmonit_port.

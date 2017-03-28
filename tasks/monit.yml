@@ -1,6 +1,6 @@
 ---
 #Setup monit
-- name: Install monit
+- name: Install monit - Debian
   apt:
       name: "{{ item }}"
       state: latest
@@ -9,21 +9,32 @@
     - monit
     - python3-yaml
   notify: Restart monit
+  when: ansible_os_family == "Debian"
 
-- name: Configure monitrc
+- name: Install monit - Archlinux
+  pacman:
+    state: latest
+    name: "{{ item }}"
+  with_items:
+    - monit
+    - python-yaml
+  when: ansible_os_family == "Archlinux"
+
+- name: Configure monitrc - Archlinux
   template:
       backup: yes
       mode: 0600
       owner: root
       group: root
       src: "monit_config"
-      dest: "/etc/monit/monitrc"
+      dest: "{{ monit_main_config}}"
   notify: Restart monit
+  when: ansible_os_family == "Archlinux"
 
 - name: Monitor basics
   template:
       src: "basic/{{ item }}"
-      dest: "/etc/monit/conf.d/{{ item }}"
+      dest: "{{ monit_conf_dir }}{{ item }}"
       owner: root
       group: root
   with_items: "{{ monit_basic_configs }}"
