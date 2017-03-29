@@ -9,10 +9,17 @@
     <Connector address="*" port="{{ monit_mmonit_port }}" processors="10" proxyPort="{{ monit_mmonit_proxy_port }}" proxyScheme="{{ monit_mmonit_proxy_scheme }}" proxyName="{{ monit_mmonit_proxy_name }}"/>
 
     <Engine name="mmonit" defaultHost="localhost" fileCache="10MB">
-      <Realm url="sqlite:///db/mmonit.db?synchronous=normal&heap_limit=8000&foreign_keys=on&journal_mode=wal"
+      {% if monit_mmonit_db_type == "postgres"%}
+        <Realm url="postgresql://{{ monit_mmonit_db_username }}:{{ monit_mmonit_db_password}}@{{ monit_mmonit_db_host }}:{{ monit_mmonit_db_port }}/{{ monit_mmonit_db_name}}"
         minConnections="5"
         maxConnections="25"
         reapConnections="300" />
+      {% else %}
+      <Realm url="sqlite:///{{ monit_mmonit_db_path }}?synchronous=normal&heap_limit=8000&foreign_keys=on&journal_mode=wal"
+        minConnections="5"
+        maxConnections="25"
+        reapConnections="300" />
+      {% endif %}
       <ErrorLogger directory="logs" fileName="error.log" rotate="month" />
         <Host name="localhost" appBase=".">
           <Logger directory="logs" fileName="mmonit.log" rotate="month" timestamp="true" />
