@@ -19,7 +19,13 @@ monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-lin
 monit_mmonit_base_dir: "/opt/mmonit"
 monit_mmonit_proxy_scheme: "https"
 monit_mmonit_proxy_port: 443
-monit_mmonit_licence: "DU4PB2UOTO-RE5SVLYI32-EZ4PNOJLHU-LLQXQYQPQV-JPC6YTREHH IBXBHHUE4P-TPGMSCEVB7-HPX54K3BT3-WAK32KHP5T-XZFAL4JDU3 2L6VOAE4G2-Y3TNW2OIBN-MDSMRONJ7H-55Z3N7E5JW-IRIVLZ64IW 7RIVLM7RSY-TY3C5PEMRN-4CIH7RJMVQ-JSRRM7RFWY-HFTSS7KE4W O7FSE"
+monit_mmonit_licence: "<License owner="Tildeslash Ltd. - Trial License">
+    TREEYC273F-RO35BHF6BR-XN2NSYHEW5-44JO7DGUV3-DXZBKTDY5M
+    JVXQHFXFIR-ZAIE3KFMUU-KKAFZIHUYO-GVOE73ZFDT-X6FENBHF6Z
+    7MB7WT5YCA-TNGVKUSUOY-EPQOT5WAJC-P5PAWW5EY4-M7JFF2EQYN
+    ULW5MEKUUO-GW47Z5APFX-EXD3YIE6EI-UXC5XADOHP-QKD5GLXLFE
+    J4U2A
+</License>"
 monit_mmonit_username: adimn
 monit_mmonit_user_password: "gu5w4g24u9ngw45gnweg"
 monit_mmonit_pemfile: /opt/certs/monit.pem
