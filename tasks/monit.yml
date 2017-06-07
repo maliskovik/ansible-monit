@@ -20,7 +20,7 @@
     - python-yaml
   when: ansible_os_family == "Archlinux"
 
-- name: Configure monitrc - Archlinux
+- name: Configure monitrc
   template:
       backup: yes
       mode: 0600
@@ -29,7 +29,6 @@
       src: "monit_config"
       dest: "{{ monit_main_config}}"
   notify: Restart monit
-  when: ansible_os_family == "Archlinux"
 
 - name: Monitor basics
   template:

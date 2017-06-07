@@ -14,18 +14,18 @@ monit_twilio: false
 monit_mmonit: false
 monit_mmonit_master: false
 monit_mmonit_port: 8080
-monit_mmonit_version: "3.7.0"
+monit_mmonit_version: "3.7.1"
 monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-linux-x64.tar.gz"
 monit_mmonit_base_dir: "/opt/mmonit"
 monit_mmonit_proxy_scheme: "https"
 monit_mmonit_proxy_port: 443
-monit_mmonit_licence: "<License owner="Tildeslash Ltd. - Trial License">
+monit_mmonit_licence: '<License owner="Tildeslash Ltd. - Trial License">
     TREEYC273F-RO35BHF6BR-XN2NSYHEW5-44JO7DGUV3-DXZBKTDY5M
     JVXQHFXFIR-ZAIE3KFMUU-KKAFZIHUYO-GVOE73ZFDT-X6FENBHF6Z
     7MB7WT5YCA-TNGVKUSUOY-EPQOT5WAJC-P5PAWW5EY4-M7JFF2EQYN
     ULW5MEKUUO-GW47Z5APFX-EXD3YIE6EI-UXC5XADOHP-QKD5GLXLFE
     J4U2A
-</License>"
+</License>'
 monit_mmonit_username: adimn
 monit_mmonit_user_password: "gu5w4g24u9ngw45gnweg"
 monit_mmonit_pemfile: /opt/certs/monit.pem
