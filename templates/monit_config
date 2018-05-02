@@ -24,7 +24,7 @@ set httpd port 2812 and use address {{ ansible_default_ipv4.address }}
     pemfile {{ monit_mmonit_pemfile }}
     signature disable
     allow localhost
-    allow {{ monit_mmonit_host_ip }}
+{% if monit_mmonit == true %}    allow {{ monit_mmonit_host_ip }}{% endif %}
     allow @{{ monit_admin_group }}
     {% if monit_mmonit == true %}allow {{ monit_mmonit_username }}:{{ monit_mmonit_password }}{% endif %}
 
