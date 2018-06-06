@@ -33,11 +33,21 @@
 - name: Monitor basics
   template:
       src: "basic/{{ item }}"
-      dest: "{{ monit_conf_dir }}{{ item }}"
+      dest: "{{ monit_conf_dir }}/{{ item }}"
       owner: root
       group: root
-  with_items: "{{ monit_basic_configs }}"
+  with_items: "{{ monit_basic_configs|default(omit) }}"
   when: monit_basic_configs is defined
+  notify: Restart monit
+
+- name: Monitor custom
+  template:
+      src: "{{ conf_dir }}/etc/monit/monit.d/{{ item }}"
+      dest: "{{ monit_conf_dir }}/{{ item }}"
+      owner: root
+      group: root
+  with_items: "{{ monit_custom_configs|default(omit) }}"
+  when: monit_custom_configs is defined
   notify: Restart monit
 
 - name: Generate monit ssl cert

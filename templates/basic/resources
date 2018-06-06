@@ -1,12 +1,16 @@
-check filesystem rootfs with path /
+{% for fs in  monit_watch_filesystems %}
+check filesystem {{ fs.name }} with path {{ fs.path }}
 if space usage > 90% for 15 cycles then alert
 if inode usage > 90% for 15 cycles then alert
 if space usage > 95%
-{% if monit_twilio == true %}then exec "/opt/scripts/twilio/sendSms.py alert 'Space usage on {{ inventory_hostname }}  exceeded 95%!'"
+{% if monit_twilio == true %}
+then exec "/opt/scripts/twilio/sendSms.py alert 'Space usage on {{ inventory_hostname }}/{{ fs }}  exceeded 95%!'"
 else if succeeded
-then exec "/opt/scripts/twilio/sendSms.py succeeded 'Space usage on {{ inventory_hostname }}  exceeded 95%!'"
-{% else %}then alert
+then exec "/opt/scripts/twilio/sendSms.py succeeded 'Space usage on {{ inventory_hostname }}/{{ fs }}  exceeded 95%!'"
+{% else %}
+then alert
 {% endif %}
+{% endfor %}
 check system $HOST
 if MEMORY > 90% for 20 cycles then alert
 if LOADAVG(15min)  > {{ ansible_processor_vcpus }} for 30 cycles then alert

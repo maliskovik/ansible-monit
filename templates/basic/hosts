@@ -1,0 +1,4 @@
+{% for host in monit_watch_hosts %}
+check host {{ host.name }} with address {{ host.address }}
+  if failed ping then alert
+{% endfor %}
