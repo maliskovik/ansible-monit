@@ -30,6 +30,11 @@
       dest: "{{ monit_main_config}}"
   notify: Restart monit
 
+- name: Make monit conf directory
+  file:
+    path: "{{ monit_conf_dir }}"
+    state: directory
+
 - name: Monitor basics
   template:
       src: "basic/{{ item }}"
