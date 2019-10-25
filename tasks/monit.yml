@@ -2,22 +2,16 @@
 #Setup monit
 - name: Install monit - Debian
   apt:
-      name: "{{ item }}"
+      name: "{{ monit_debian_packages }}"
       state: latest
       force: yes
-  with_items:
-    - monit
-    - python3-yaml
   notify: Restart monit
   when: ansible_os_family == "Debian"
 
 - name: Install monit - Archlinux
   pacman:
     state: latest
-    name: "{{ item }}"
-  with_items:
-    - monit
-    - python-yaml
+    name: "{{ monit_arch_packages }}"
   when: ansible_os_family == "Archlinux"
 
 - name: Configure monitrc
