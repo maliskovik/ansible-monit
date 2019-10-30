@@ -7,11 +7,28 @@ set logfile syslog facility log_daemon
 set pidfile /var/run/monit.pid
 set idfile /var/.monit.id
 set statefile /var/.monit.state
+{% if monit_mail is defined %}
+set mailserver {{ monit_mail.server }} port {{ monit_mail.port }}
+  username {{ monit_mail.username }} password "{{ monit_mail.password }}"
+  using TLSV1 with timeout 30 seconds
+{% else %}
 set mailserver  localhost
+{% endif%}
 set eventqueue
     basedir /var/lib/monit/events
     slots 1000
 
+set mail-format {
+  from: {{ monit_from }}
+  subject: monit alert -- {{ ansible_hostname }} --  $EVENT
+  message: $EVENT Service $SERVICE
+                Date:        $DATE
+                Action:      $ACTION
+                Host:        $HOST
+                Description: $DESCRIPTION
+
+           Your faithful employee,
+           Monit }
 {% for mail in monit_admin_mails %}
 set alert {{ mail }}
 {% endfor %}

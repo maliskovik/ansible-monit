@@ -16,7 +16,12 @@ We will use self signed certificates for
 * monit_mmonit_licence: MMonit server licence.
 
 ## Optional variables
-
+* monit_mail - mail server structure ( localhost if not defined)
+  * server - server address
+  * port - port number
+  * username
+  * password
+* monit_from : monit sender
 * monit_custom_config_directory: Directory where you have your own monit configs defined.
 * monit_custom_configs: Which monit configs to include from the custom location.
 * monit_twilio_account: Your twilio account ID.

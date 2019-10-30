@@ -31,3 +31,4 @@ monit_mmonit_user_password: "gu5w4g24u9ngw45gnweg"
 monit_mmonit_pemfile: /opt/certs/monit.pem
 monit_mmonit_db_type: "sqlite"
 monit_mmonit_db_path: "db/mmonit.db"
+monit_from: monit@localhost
