@@ -14,6 +14,12 @@
     name: "{{ monit_arch_packages }}"
   when: ansible_os_family == "Archlinux"
 
+- name: Install monit - Centos
+  yum:
+    state: latest
+    name: "{{ monit_centos_packages }}"
+  when: ansible_os_family == "RedHat"
+
 - name: Configure monitrc
   template:
       backup: yes
@@ -70,3 +76,9 @@
 
 - include: twilio.yml
   when: "{{ monit_twilio }}"
+
+- name: Start monit
+  service:
+    name: monit
+    state: started
+    enabled: yes
