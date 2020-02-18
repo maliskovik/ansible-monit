@@ -1,6 +1,8 @@
 [Unit]
 Description = Easy, proactive monitoring of Unix systems, network and cloud services
 After = network.target
+After = postgresql.service
+After = monit.service
 
 [Service]
 Type=simple
