@@ -1,0 +1,34 @@
+upstream mmonit_pass {
+    server                  127.0.0.1:8080;
+}
+
+server {
+    server_name             mmonit.example.net;
+    listen                  80;
+    include                 conf.d/letsencrypt.inc;
+
+    location / {
+        return              301 https://mmonit.example.net$request_uri;
+    }
+}
+
+server {
+    server_name             mmonit.example.net;
+    listen                  443 ssl ;
+    ssl_certificate         /etc/letsencrypt/live/mmonit.example.net/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/mmonit.example.net/privkey.pem;
+
+    location / {
+        proxy_pass          http://mmonit_pass;
+        proxy_redirect      http:// https://;
+        include             conf.d/proxy_pass.inc;
+    }-
+}
+
+server {
+    server_name             *.mmonit.example.net;
+    listen                  443 ssl ;
+    ssl_certificate         /etc/letsencrypt/live/mmonit.example.net/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/mmonit.example.net/privkey.pem;
+    return                  301 https://mmonit.example.net$request_uri;
+}
