@@ -19,7 +19,7 @@ set eventqueue
     slots 1000
 
 set mail-format {
-  from: {{ monit_from }}
+  from: {{ monit_from|default("monit") }}
   subject: monit alert -- {{ ansible_hostname }} --  $EVENT
   message: $EVENT Service $SERVICE
                 Date:        $DATE

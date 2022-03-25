@@ -56,7 +56,7 @@
   notify: Restart monit
 
 - name: Generate monit ssl cert
-  command: openssl req -new -x509 -days 365 -nodes -newkey rsa:4096 -keyout {{ monit_mmonit_pemfile}} -out {{ monit_mmonit_pemfile }} -subj "/C=SI/ST=Slovenia/L=Ljubljana/O=Izzivizzi/OU=devops/CN={{ ansible_hostname }}"
+  command: openssl req -new -x509 -days 365 -nodes -newkey rsa:4096 -keyout {{ monit_mmonit_pemfile}} -out {{ monit_mmonit_pemfile }} -subj "/C={{ monit_cert_C }}/ST={{ monit_cert_ST }}/L={{ monit_cert_L }}/O={{ monit_cert_O }}/OU={{ monit_cert_OU }}/CN={{ ansible_hostname }}"
 
 - name: Set monit SSL cert permissions
   file:

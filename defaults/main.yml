@@ -3,7 +3,7 @@ monit_admin_mails:
 
 monit_basic_configs:
   - resources
-
+monit_watch_load: true
 monit_admin_group: "sudo"
 monit_custom_confgis: "templates/custom"
 monit_twilio_script: "/opt/scripts/twilio/sendSms.py"
@@ -11,20 +11,25 @@ monit_mail_alert_delay: 2
 monit_sms_alert_delay: 5
 monit_alert_timeout: 10
 monit_twilio: false
+monit_cert_O: "ACME"
+monit_cert_OU: "test"
+monit_cert_L: "Ljubljana"
+monit_cert_C: "SI"
+monit_cert_ST: "Slovenia"
 monit_mmonit: false
 monit_mmonit_master: false
 monit_mmonit_port: 8080
-monit_mmonit_version: "3.7.1"
+monit_mmonit_version: "3.7.10"
 monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-linux-x64.tar.gz"
 monit_mmonit_base_dir: "/opt/mmonit"
 monit_mmonit_proxy_scheme: "https"
 monit_mmonit_proxy_port: 443
-monit_mmonit_licence: '<License owner="Tildeslash Ltd. - Trial License">
-    TREEYC273F-RO35BHF6BR-XN2NSYHEW5-44JO7DGUV3-DXZBKTDY5M
-    JVXQHFXFIR-ZAIE3KFMUU-KKAFZIHUYO-GVOE73ZFDT-X6FENBHF6Z
-    7MB7WT5YCA-TNGVKUSUOY-EPQOT5WAJC-P5PAWW5EY4-M7JFF2EQYN
-    ULW5MEKUUO-GW47Z5APFX-EXD3YIE6EI-UXC5XADOHP-QKD5GLXLFE
-    J4U2A
+monit_mmonit_licence: '<License owner="M/Monit Trial License">
+    IRJO4PSEOE-HR5TAIPND5-NTNUSOMINQ-RPXJOVSJV6-3DI3A4JMCV
+    CANBXVUVSG-QW2AVEFDPO-W2Q7C2WTZ2-ZZQAITR6LD-3P64CE4AAL
+    CG2HWUF2RA-25PRQHWHOK-KEZ3VBA3AD-YJJMQ2AO5H-SICY66QGLE
+    3YBOL67VQV-XJG4I5HVUH-G7YSQZG6GK-AJ4XCCB6VO-5OCOUEOIBT
+    WL6VY
 </License>'
 monit_mmonit_username: adimn
 monit_mmonit_user_password: "gu5w4g24u9ngw45gnweg"

@@ -11,6 +11,7 @@ then exec "/opt/scripts/twilio/sendSms.py succeeded 'Space usage on {{ inventory
 then alert
 {% endif %}
 {% endfor %}
+{% if  monit_watch_load %}
 check system $HOST
 if MEMORY > 90% for 20 cycles then alert
 if LOADAVG(15min)  > {{ ansible_processor_vcpus }} for 30 cycles then alert
@@ -19,4 +20,5 @@ if MEMORY > 95%
 else if succeeded
 then exec "/opt/scripts/twilio/sendSms.py succeeded 'Memory usage on {{ inventory_hostname }}  exceeded 95%!'"
 {% else %}then alert
+{% endif %}
 {% endif %}
