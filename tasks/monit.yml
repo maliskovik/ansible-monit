@@ -74,7 +74,7 @@
   notify: Restart monit
   when: monit_watched_hosts is defined
 
-- include: twilio.yml
+- ansible.builtin.include_tasks: twilio.yml
   when: "{{ monit_twilio }}"
 
 - name: Start monit

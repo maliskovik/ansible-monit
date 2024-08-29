@@ -1,6 +1,6 @@
 ---
-- include: monit.yml
-- include: twilio.yml
+- ansible.builtin.include_tasks: monit.yml
+- ansible.builtin.include_tasks: twilio.yml
   when: monit_twilio == true
-- include: mmonit.yml
+- ansible.builtin.include_tasks: mmonit.yml
   when: monit_mmonit_master == true
