@@ -19,8 +19,8 @@ monit_cert_ST: "Slovenia"
 monit_mmonit: false
 monit_mmonit_master: false
 monit_mmonit_port: 8080
-monit_mmonit_version: "3.7.15"
-monit_mmonit_url: "https://mmonit.com/dist/3/mmonit-{{ monit_mmonit_version }}-linux-x64.tar.gz"
+monit_mmonit_version: "5.2.0"
+monit_mmonit_url: "https://mmonit.com/dist/mmonit-{{ monit_mmonit_version }}-linux-x64.tar.gz"
 monit_mmonit_base_dir: "/opt/mmonit"
 monit_mmonit_proxy_scheme: "https"
 monit_mmonit_proxy_port: 443

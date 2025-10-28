@@ -2,9 +2,9 @@
 #Setup monit
 - name: Install monit - Debian
   apt:
-      name: "{{ monit_debian_packages }}"
-      state: latest
-      force: yes
+    name: "{{ monit_debian_packages }}"
+    state: latest
+    force: yes
   notify: Restart monit
   when: ansible_os_family == "Debian"
 
@@ -22,12 +22,12 @@
 
 - name: Configure monitrc
   template:
-      backup: yes
-      mode: 0600
-      owner: root
-      group: root
-      src: "monit_config"
-      dest: "{{ monit_main_config}}"
+    backup: yes
+    mode: 0600
+    owner: root
+    group: root
+    src: "monit_config"
+    dest: "{{ monit_main_config}}"
   notify: Restart monit
 
 - name: Make monit conf directory
@@ -37,21 +37,21 @@
 
 - name: Monitor basics
   template:
-      src: "basic/{{ item }}"
-      dest: "{{ monit_conf_dir }}/{{ item }}"
-      owner: root
-      group: root
-  with_items: "{{ monit_basic_configs|default(omit) }}"
+    src: "basic/{{ item }}"
+    dest: "{{ monit_conf_dir }}/{{ item }}"
+    owner: root
+    group: root
+  with_items: "{{ monit_basic_configs|default('') }}"
   when: monit_basic_configs is defined
   notify: Restart monit
 
 - name: Monitor custom
   template:
-      src: "{{ conf_dir }}/etc/monit/monit.d/{{ item }}"
-      dest: "{{ monit_conf_dir }}/{{ item }}"
-      owner: root
-      group: root
-  with_items: "{{ monit_custom_configs|default(omit) }}"
+    src: "{{ conf_dir }}/etc/monit/monit.d/{{ item }}"
+    dest: "{{ monit_conf_dir }}/{{ item }}"
+    owner: root
+    group: root
+  with_items: "{{ monit_custom_configs|default('') }}"
   when: monit_custom_configs is defined
   notify: Restart monit
 
@@ -65,14 +65,23 @@
     group: root
     path: /opt/certs/monit.pem
 
-- name: Monitor http watch
+- name: Monitor host watch
   template:
-      src: "httpTest"
-      dest: "/etc/monit/conf.d/httpTest"
-      owner: root
-      group: root
+    src: "basic/servers"
+    dest: "/etc/monit.d/servers"
+    owner: root
+    group: root
   notify: Restart monit
   when: monit_watched_hosts is defined
+
+- name: Monitor website watch
+  template:
+    src: "basic/websites"
+    dest: "/etc/monit.d/websites"
+    owner: root
+    group: root
+  notify: Restart monit
+  when: monit_watched_websites is defined
 
 - ansible.builtin.include_tasks: twilio.yml
   when: "{{ monit_twilio }}"

@@ -1,0 +1,14 @@
+{% for site in monit_watched_hosts %}
+IF FAILED
+HOST {{ site.address }}
+PORT {{ site.port|default(443) }}
+TYPE TCP
+PROTOCOL {{ site.protocol|default("https") }}
+REQUEST {{ site.path|default("/") }}
+STATUS {{ site.expected_status|default("200") }}
+{% if site.check_ssl|default(false) %}
+CERTIFICATE VALID for 20 DAYS
+{% endif %}
+if failed then alert
+
+{% endfor %}

@@ -1,0 +1,23 @@
+{% for watched_server in monit_watched_servers %}
+# Host {{ watched_server.name }}
+check host {{ watched_server.name }} with address {{ watched_server.address }}
+if failed port {{ watched_server.ssh_port }} for {{ monit_mail_alert_delay }} cycles then alert
+{% if monit_twilio == true %}if failed port {{ watched_server.ssh_port }} for {{ monit_sms_alert_delay }} cycles
+then exec "{{ monit_twilio_script }} alert 'Server {{ watched_server.name }}'"
+else if succeeded
+then exec "{{ monit_twilio_script }} succeeded 'Server {{ watched_server.name }}'"{% endif %}
+{% if watched_server.sites is defined %}
+{% for site in watched_server.sites %}
+
+if failed url {{ site }}
+timeout {{ monit_alert_timeout }} seconds for {{ monit_mail_alert_delay }} cycles then alert
+{% if monit_twilio == true %}if failed url  {{ site }}
+timeout {{ monit_alert_timeout }} seconds for {{ monit_sms_alert_delay }} cycles
+then exec "{{ monit_twilio_script }} alert 'Site {{ site }}'"
+else if succeeded
+then exec "{{ monit_twilio_script }} succeeded 'Site {{ site }}'"{% endif %}
+{% endfor %}
+{% endif %}
+#------------------------------------------------------------------------------#
+
+{% endfor %}
