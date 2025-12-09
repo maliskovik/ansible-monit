@@ -14,7 +14,7 @@ then alert
 {% if  monit_watch_load %}
 check system $HOST
 if MEMORY > 90% for 20 cycles then alert
-if LOADAVG(15min)  > {{ ansible_processor_vcpus }} for 30 cycles then alert
+if LOADAVG(15min)  > {{ ansible_facts["processor_vcpus"] }} for 30 cycles then alert
 if MEMORY > 95%
 {% if monit_twilio == true %}then exec "/opt/scripts/twilio/sendSms.py alert 'Memory usage on {{ inventory_hostname }}  exceeded 95%!'"
 else if succeeded

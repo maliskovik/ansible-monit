@@ -6,19 +6,19 @@
     state: latest
     force: yes
   notify: Restart monit
-  when: ansible_os_family == "Debian"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Install monit - Archlinux
   pacman:
     state: latest
     name: "{{ monit_arch_packages }}"
-  when: ansible_os_family == "Archlinux"
+  when: ansible_facts["os_family"] == "Archlinux"
 
 - name: Install monit - Centos
   yum:
     state: latest
     name: "{{ monit_centos_packages }}"
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
 
   # name: Set workdir - Ubuntu
 - set_fact:
@@ -66,7 +66,7 @@
   notify: Restart monit
 
 - name: Generate monit ssl cert
-  command: openssl req -new -x509 -days 365 -nodes -newkey rsa:4096 -keyout {{ monit_mmonit_pemfile}} -out {{ monit_mmonit_pemfile }} -subj "/C={{ monit_cert_C }}/ST={{ monit_cert_ST }}/L={{ monit_cert_L }}/O={{ monit_cert_O }}/OU={{ monit_cert_OU }}/CN={{ ansible_hostname }}"
+  command: openssl req -new -x509 -days 365 -nodes -newkey rsa:4096 -keyout {{ monit_mmonit_pemfile}} -out {{ monit_mmonit_pemfile }} -subj "/C={{ monit_cert_C }}/ST={{ monit_cert_ST }}/L={{ monit_cert_L }}/O={{ monit_cert_O }}/OU={{ monit_cert_OU }}/CN={{ ansible_facts["hostname"] }}"
 
 - name: Set monit SSL cert permissions
   file:

@@ -1,6 +1,6 @@
 ---
-monit_main_config: "{{ ( ansible_os_family == 'Archlinux' or ansible_os_family == 'RedHat') |  ternary('/etc/monitrc', '/etc/monit/monitrc') }}"
-monit_conf_dir: "{{ ( ansible_os_family == 'Archlinux' or ansible_os_family == 'RedHat') |  ternary('/etc/monit.d', '/etc/monit/conf.d') }}"
+monit_main_config: "{{ ( ansible_facts["os_family"] == 'Archlinux' or ansible_facts["os_family"] == 'RedHat') |  ternary('/etc/monitrc', '/etc/monit/monitrc') }}"
+monit_conf_dir: "{{ ( ansible_facts["os_family"] == 'Archlinux' or ansible_facts["os_family"] == 'RedHat') |  ternary('/etc/monit.d', '/etc/monit/conf.d') }}"
 monit_systemd_file: "/etc/systemd/system/mmonit.service"
 monit_debian_packages:
   - monit
