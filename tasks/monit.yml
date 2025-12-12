@@ -39,8 +39,6 @@
   file:
     path: "{{ monit_work_dir }}"
     state: directory
-    owner: monit
-    group: monit
 
 - name: Monitor basics
   template:
