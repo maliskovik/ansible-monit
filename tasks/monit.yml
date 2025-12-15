@@ -81,6 +81,7 @@
     dest: "/etc/monit.d/servers"
     owner: root
     group: root
+    mode: 0600
   notify: Restart monit
   when: monit_watched_hosts is defined
 
@@ -90,6 +91,7 @@
     dest: "/etc/monit.d/websites"
     owner: root
     group: root
+    mode: 0600
   notify: Restart monit
   when: monit_watched_websites is defined
 
