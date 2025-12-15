@@ -78,7 +78,7 @@
 - name: Monitor host watch
   template:
     src: "basic/servers"
-    dest: "/etc/monit.d/servers"
+    dest: "{{ monit_conf_dir }}/servers"
     owner: root
     group: root
     mode: 0600
@@ -88,7 +88,7 @@
 - name: Monitor website watch
   template:
     src: "basic/websites"
-    dest: "/etc/monit.d/websites"
+    dest: "{{ monit_conf_dir }}/websites"
     owner: root
     group: root
     mode: 0600
