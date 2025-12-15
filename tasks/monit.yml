@@ -20,6 +20,11 @@
     name: "{{ monit_centos_packages }}"
   when: ansible_os_family == "RedHat"
 
+  # name: Set workdir - Ubuntu
+- set_fact:
+    monit_work_dir: "/var/lib/monit"
+  when: ansible_os_family == "Debian"
+
 - name: Configure monitrc
   template:
     backup: yes
